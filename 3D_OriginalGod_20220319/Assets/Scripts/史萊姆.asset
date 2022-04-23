@@ -15,9 +15,9 @@ MonoBehaviour:
   hp: 100
   attack: 10
   speed: 2
-  rangeTrack: 30
-  rangeAttack: 5
+  rangeTrack: 7
+  rangeAttack: 1.5
   exp: 10
-  goCoin: {fileID: 0}
+  goCoin: {fileID: 8487487379763003807, guid: e43ee376c57ca5f47b166b2363fa1b65, type: 3}
   coinCount: 50
   coinProbability: 0.9
