@@ -25,12 +25,20 @@ namespace KID
         public float hp;
         [Header("§ğÀ»"), Range(0, 100)]
         public float attack;
+        [Header("§ğÀ»§N«o"), Range(0, 5)]
+        public float cd;
+        [Header("©µ¿ğ¶Ç°e¶Ë®`"), Range(0, 2)]
+        public float delaySendDamage;
         [Header("²¾°Ê³t«×"), Range(0, 50)]
         public float speed;
         [Header("°lÂÜ½d³ò"), Range(7, 50)]
         public float rangeTrack;
         [Header("§ğÀ»½d³ò"), Range(0, 7)]
         public float rangeAttack;
+        [Header("§ğÀ»°Ï°ì¦ì²¾")]
+        public Vector3 v3AttackOffset;
+        [Header("§ğÀ»°Ï°ì¤Ø¤o")]
+        public Vector3 v3AttackSize = Vector3.one;
         [Header("¸gÅç­È"), Range(0, 1000)]
         public float exp;
         [Header("ª÷¹ôª«¥ó")]
