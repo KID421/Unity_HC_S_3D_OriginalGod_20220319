@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7983018181852471370}
   - component: {fileID: 6819782360013993163}
   - component: {fileID: 1553586543}
-  m_Layer: 0
+  - component: {fileID: 1892925749197100197}
+  m_Layer: 8
   m_Name: "\u91D1\u5E63"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +98,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!64 &1553586543
 MeshCollider:
@@ -113,3 +114,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -127844609115117539, guid: 5d0dbe9cd045eb6458b6aa0a6ffc0235, type: 3}
+--- !u!114 &1892925749197100197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8487487379763003807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d05cc9fca53bc14da9338b8278131e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayToFly: 2.5
+  speed: 5
+  distanceToDestory: 0.7

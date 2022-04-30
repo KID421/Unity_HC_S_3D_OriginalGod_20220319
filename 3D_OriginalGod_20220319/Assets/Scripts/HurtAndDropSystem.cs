@@ -23,6 +23,10 @@ namespace KID
 
         private NavMeshAgent nav;
         private Enemy enemy;
+        /// <summary>
+        /// 等級管理器
+        /// </summary>
+        private LevelManager levelManager;
 
         // override 複寫父類別有 virtual 的資料
         protected override void Awake()
@@ -35,6 +39,8 @@ namespace KID
             hpMax = data.hp;
             UpdateHealthUI();
             traCamera = GameObject.Find("攝影機").transform;
+
+            levelManager = GameObject.Find("等級管理器").GetComponent<LevelManager>();
         }
 
         private void Update()
@@ -53,10 +59,14 @@ namespace KID
 
         protected override void Dead()
         {
+            if (ani.GetBool(parameterDead)) return;
+
             base.Dead();
 
             nav.enabled = false;
             enemy.enabled = false;
+
+            levelManager.ShowUI();
 
             StartCoroutine(DropCoin());
         }
@@ -75,8 +85,9 @@ namespace KID
                     Vector3 pos = new Vector3(Random.Range(-1, 1), 1, Random.Range(-1, 1));
 
                     // 生成(物件，座標，角度)
-                    Instantiate(data.goCoin, transform.position + pos, Quaternion.Euler(90, Random.Range(0, 360), 0));
-                    yield return new WaitForSeconds(0.1f);
+                    GameObject temp = Instantiate(data.goCoin, transform.position + pos, Quaternion.Euler(90, Random.Range(0, 360), 0));
+                    temp.GetComponent<Rigidbody>().AddForce(new Vector3(0, Random.Range(300, 500), 0));
+                    yield return new WaitForSeconds(0.02f);
                 }
             }
         }
