@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;   // 引用 系統 集合(資料結構) - 協同程序
 
 namespace KID
 {
@@ -9,6 +10,7 @@ namespace KID
     /// </summary>
     public class HurtAndDropSystem : HurtSystem
     {
+        #region 
         [SerializeField, Header("敵人資料")]
         private DataEnemy data;
         [SerializeField, Header("畫布敵人血條")]
@@ -47,6 +49,7 @@ namespace KID
         {
             traCanvasHp.eulerAngles = traCamera.eulerAngles;
         }
+        #endregion
 
         protected override void Dead()
         {
@@ -54,6 +57,28 @@ namespace KID
 
             nav.enabled = false;
             enemy.enabled = false;
+
+            StartCoroutine(DropCoin());
+        }
+
+        /// <summary>
+        /// 掉落金幣
+        /// </summary>
+        private IEnumerator DropCoin()
+        {
+            float random = Random.value;                    // 取得隨機值 0 ~ 1
+
+            if (random <= data.coinProbability)             // 判斷 隨機值 是否小於等於 機率
+            {
+                for (int i = 0; i < data.coinCount; i++)    // 迴圈重複生成道具
+                {
+                    Vector3 pos = new Vector3(Random.Range(-1, 1), 1, Random.Range(-1, 1));
+
+                    // 生成(物件，座標，角度)
+                    Instantiate(data.goCoin, transform.position + pos, Quaternion.Euler(90, Random.Range(0, 360), 0));
+                    yield return new WaitForSeconds(0.1f);
+                }
+            }
         }
     }
 }
