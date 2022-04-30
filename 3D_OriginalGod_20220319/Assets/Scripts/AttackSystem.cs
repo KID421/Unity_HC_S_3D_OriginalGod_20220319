@@ -39,7 +39,10 @@ namespace KID
         private Vector3 v3AttackOffset;
         [SerializeField]
         private LayerMask layerAttack;
+        [SerializeField, Header("攻擊力"), Range(10, 100)]
+        private float attack = 30;
 
+        #region 私人資料
         private string parameterAttack = "觸發攻擊";
         private bool isAttack;
         private bool isBack;
@@ -48,6 +51,8 @@ namespace KID
         private float timerToHide;
         private float timerAttack;
         private vThirdPersonController controller;
+        #endregion
+
         #endregion
 
         #region 事件
@@ -94,6 +99,7 @@ namespace KID
 
                 ani.SetTrigger(parameterAttack);    // 觸發攻擊動畫
                 psLight.Play();                     // 播放攻擊特效
+                CheckAttackArea();
 
                 timer = 0;                          // 每次攻擊計時器重算
                 isAttack = true;
@@ -157,6 +163,21 @@ namespace KID
                     canAttack = true;
                     controller.lockMovement = false;                // 啟動移動
                 }
+            }
+        }
+
+        /// <summary>
+        /// 檢查攻擊區域
+        /// </summary>
+        private void CheckAttackArea()
+        {
+            Collider[] hits = Physics.OverlapBox(
+                transform.position + transform.TransformDirection(v3AttackOffset),
+                v3AttackSize / 2, Quaternion.identity, layerAttack);
+
+            if (hits.Length > 0)
+            {
+                hits[0].GetComponent<HurtAndDropSystem>().GetHurt(attack);
             }
         }
         #endregion
