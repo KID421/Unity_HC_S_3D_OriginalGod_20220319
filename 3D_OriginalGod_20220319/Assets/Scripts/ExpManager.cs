@@ -15,13 +15,17 @@ namespace KID
         private DataExpTable dataExpTable;
 
         /// <summary>
-        /// 等級
+        /// 玩家等級
         /// </summary>
         private Text textLv;
         /// <summary>
-        /// 血量文字
+        /// 玩家血量文字
         /// </summary>
         private Text textHp;
+        /// <summary>
+        /// 學生妹
+        /// </summary>
+        private HurtSystem hurtSystemPlayer;
 
         /// <summary>
         /// 顯示資訊管理器
@@ -31,9 +35,11 @@ namespace KID
         private void Awake()
         {
             showInfoManager = GameObject.Find("顯示資訊管理器").GetComponent<ShowInfoManager>();
-            textLv = GameObject.Find("等級").GetComponent<Text>();
-            textHp = GameObject.Find("血量文字").GetComponent<Text>();
+            textLv = GameObject.Find("玩家等級").GetComponent<Text>();
+            textHp = GameObject.Find("玩家血量文字").GetComponent<Text>();
+            hurtSystemPlayer = GameObject.Find("學生妹").GetComponent<HurtSystem>();
             UpdatePlayerUI();
+            hurtSystemPlayer.UpdateDataHp(dataPlayer.hp);
         }
 
         /// <summary>
@@ -64,6 +70,7 @@ namespace KID
                 dataPlayer.attack += dataPlayer.lvUpAttack;
                 dataPlayer.hp += dataPlayer.lvUpHp;
                 UpdatePlayerUI();
+                hurtSystemPlayer.UpdateDataHp(dataPlayer.hp);
             }
         }
 

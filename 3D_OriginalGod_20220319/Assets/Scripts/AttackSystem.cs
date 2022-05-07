@@ -32,15 +32,14 @@ namespace KID
         private float timeSwordToHide = 3.5f;
         [SerializeField, Header("攻擊冷卻時間"), Range(0.1f, 1.5f)]
         private float timeCD = 0.9f;
-
         [SerializeField, Header("攻擊區資料")]
         private Vector3 v3AttackSize = Vector3.one;
         [SerializeField]
         private Vector3 v3AttackOffset;
         [SerializeField]
         private LayerMask layerAttack;
-        [SerializeField, Header("攻擊力"), Range(10, 100)]
-        private float attack = 30;
+        [SerializeField, Header("玩家資料")]
+        private DataPlayer data;
 
         #region 私人資料
         private string parameterAttack = "觸發攻擊";
@@ -177,7 +176,7 @@ namespace KID
 
             if (hits.Length > 0)
             {
-                hits[0].GetComponent<HurtAndDropSystem>().GetHurt(attack);
+                hits[0].GetComponent<HurtAndDropSystem>().GetHurt(data.attack);
             }
         }
         #endregion

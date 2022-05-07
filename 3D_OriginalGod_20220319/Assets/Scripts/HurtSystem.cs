@@ -27,7 +27,7 @@ namespace KID
         protected virtual void Awake()
         {
             hpMax = hp;
-            UpdateHealthUI();
+            // UpdateHealthUI();
         }
 
         private void Start()
@@ -54,6 +54,16 @@ namespace KID
             UpdateHealthUI();
 
             if (hp <= 0) Dead();
+        }
+
+        /// <summary>
+        /// 更新資料：血量與最大值
+        /// </summary>
+        /// <param name="currentHp"></param>
+        public void UpdateDataHp(float currentHp)
+        {
+            hp = currentHp;
+            hpMax = currentHp;
         }
 
         /// <summary>
