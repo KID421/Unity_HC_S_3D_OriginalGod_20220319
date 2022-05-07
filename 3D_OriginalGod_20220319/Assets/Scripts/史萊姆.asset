@@ -21,7 +21,7 @@ MonoBehaviour:
   rangeAttack: 1.5
   v3AttackOffset: {x: 0, y: 0.5, z: 0.9}
   v3AttackSize: {x: 1, y: 1, z: 0.8}
-  exp: 30
+  exp: 100
   goCoin: {fileID: 8487487379763003807, guid: e43ee376c57ca5f47b166b2363fa1b65, type: 3}
   coinCount: 50
   coinProbability: 0.9

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace KID
 {
@@ -14,6 +15,15 @@ namespace KID
         private DataExpTable dataExpTable;
 
         /// <summary>
+        /// 等級
+        /// </summary>
+        private Text textLv;
+        /// <summary>
+        /// 血量文字
+        /// </summary>
+        private Text textHp;
+
+        /// <summary>
         /// 顯示資訊管理器
         /// </summary>
         private ShowInfoManager showInfoManager;
@@ -21,6 +31,9 @@ namespace KID
         private void Awake()
         {
             showInfoManager = GameObject.Find("顯示資訊管理器").GetComponent<ShowInfoManager>();
+            textLv = GameObject.Find("等級").GetComponent<Text>();
+            textHp = GameObject.Find("血量文字").GetComponent<Text>();
+            UpdatePlayerUI();
         }
 
         /// <summary>
@@ -41,11 +54,26 @@ namespace KID
         /// </summary>
         private void LevelUp()
         {
-            if (dataPlayer.exp >= dataExpTable.exps[dataPlayer.lv - 1])
+            int expNeed = dataExpTable.exps[dataPlayer.lv - 1];
+
+            while (dataPlayer.exp >= expNeed)
             {
-                dataPlayer.exp = 0;
+                dataPlayer.exp -= expNeed;
                 dataPlayer.lv++;
+                expNeed = dataExpTable.exps[dataPlayer.lv - 1];
+                dataPlayer.attack += dataPlayer.lvUpAttack;
+                dataPlayer.hp += dataPlayer.lvUpHp;
+                UpdatePlayerUI();
             }
+        }
+
+        /// <summary>
+        /// 更新玩家介面
+        /// </summary>
+        private void UpdatePlayerUI()
+        {
+            textLv.text = "Lv" + dataPlayer.lv;
+            textHp.text = dataPlayer.hp + " / " + dataPlayer.hp;
         }
     }
 }

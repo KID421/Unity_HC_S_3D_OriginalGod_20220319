@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27e722f9c61efd459e1f236310935b4, type: 3}
   m_Name: "\u5B78\u751F\u59B9"
   m_EditorClassIdentifier: 
-  lv: 2
+  lv: 1
   exp: 0
   attack: 20
+  hp: 1000
+  lvUpAttack: 5
+  lvUpHp: 100
