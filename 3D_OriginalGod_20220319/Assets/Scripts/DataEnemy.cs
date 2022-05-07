@@ -40,7 +40,7 @@ namespace KID
         [Header("攻擊區域尺寸")]
         public Vector3 v3AttackSize = Vector3.one;
         [Header("經驗值"), Range(0, 1000)]
-        public float exp;
+        public int exp;
         [Header("金幣物件")]
         public GameObject goCoin;
         [Header("金幣數量"), Range(0, 500)]
